@@ -1,0 +1,6 @@
+{
+  "installCommand": "npm install --workspace=Frontend-Website",
+  "buildCommand": "npm run build --workspace=Frontend-Website",
+  "outputDirectory": "Frontend-Website/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
