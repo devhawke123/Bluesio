@@ -1,0 +1,14 @@
+{
+  "name": "bluesio",
+  "private": true,
+  "workspaces": ["Frontend-Website", "Backend"],
+  "scripts": {
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "prisma:migrate": "npm run prisma:migrate --workspace Backend",
+    "prisma:generate": "npm run prisma:generate --workspace Backend",
+    "dev:fe": "npm run dev --workspace Frontend-Website",
+    "dev:be": "npm run dev --workspace Backend",
+    "build": "npm run build --workspaces"
+  }
+}

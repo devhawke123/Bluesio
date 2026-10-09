@@ -1,0 +1,493 @@
+@import 'tailwindcss';
+
+/* Order follows ARCHITECTURE.md §4.5a. Tokens are filled in from Figma (fonts, colours, type scale, breakpoints). */
+
+/* 2. Height variants */
+@custom-variant short (@media (max-height: 750px));
+@custom-variant medium (@media (min-height: 751px) and (max-height: 899px));
+@custom-variant tall (@media (min-height: 900px));
+
+/* 3. Breakpoints (named tokens only) */
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  /* Narrowest width where the full desktop navbar fits (measured) */
+  --breakpoint-nav: 90rem;
+  --breakpoint-2xl: 96rem;
+  --breakpoint-3xl: 120rem;
+}
+
+/* 4. @font-face — one per family + weight; family strings must match the --font-* tokens exactly */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/Noto_Sans/static/NotoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/Noto_Sans/static/NotoSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/Noto_Sans/static/NotoSans-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/Noto_Sans/static/NotoSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/noto_sans_display/static/NotoSansDisplay-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/noto_sans_display/static/NotoSansDisplay-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/Manrope/Manrope-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/Manrope/Manrope-Bold.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Rethink Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/Rethinksans/static/RethinkSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rethink Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/Rethinksans/static/RethinkSans-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/Onest/static/Onest-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/Onest/static/Onest-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/Onest/static/Onest-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/Onest/static/Onest-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rethink Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/Rethinksans/static/RethinkSans-Bold.ttf') format('truetype');
+}
+
+/* 5. @theme tokens — colours, fonts, type scale, shadows, section spacing (from Figma) */
+@theme {
+  --font-body: 'Noto Sans', system-ui, sans-serif;
+  --font-display: 'Noto Sans Display', 'Noto Sans', system-ui, sans-serif;
+  --font-accent: 'Manrope', system-ui, sans-serif;
+  --font-card: 'Rethink Sans', system-ui, sans-serif;
+  --font-facility: 'Onest', system-ui, sans-serif;
+
+  --color-navy-dark: #060537;
+  --color-blue-deep: #00408c;
+  --color-teal: #3ce7cd;
+  --color-blue: #257bd7;
+  --color-blue-light: #4ca5fc;
+  --color-ice: #c7fdff;
+  --color-sand: #ffe4cc;
+  --color-lilac: #f7f3fd;
+  --color-ink: #1e1e1e;
+  --color-heading-dark: #131925;
+  --color-list: #374151;
+  --color-muted: #64748b;
+  --color-sky: #0ea5e9;
+  --color-success: #16a34a;
+  --color-tile: #fbf9fe;
+  --color-faq: rgb(49 66 45 / 0.17);
+
+  /* Gradient text (use with bg-clip-text text-transparent) */
+  --background-image-heading-hero: linear-gradient(-65.69deg, var(--color-ice) 0%, var(--color-sand) 100%);
+  --background-image-heading-section: linear-gradient(-42.31deg, var(--color-ice) 0%, var(--color-sand) 100%);
+  /* Black-to-blue section backgrounds; angles differ per Figma frame */
+  --background-image-glow-explore: linear-gradient(164.26deg, #000 56.666%, var(--color-blue) 161.43%);
+  --background-image-glow-stats: linear-gradient(175.33deg, #000 56.666%, var(--color-blue) 161.43%);
+
+  --background-image-heading-about: linear-gradient(259.6deg, var(--color-blue-deep) 0%, var(--color-blue) 50%, #000 100%);
+  --background-image-blue-edge: linear-gradient(96.81deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  --background-image-button-blue: linear-gradient(114.81deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+
+  --background-image-heading-masterplan: linear-gradient(-67.18deg, var(--color-ice) 0%, var(--color-blue) 50%, var(--color-sand) 100%);
+  --background-image-glow-masterplan: linear-gradient(161.2deg, #000 56.666%, var(--color-blue) 161.43%);
+  --background-image-glow-icon: linear-gradient(149.5deg, #000 56.666%, var(--color-blue) 161.43%);
+
+  --background-image-icon-blue: linear-gradient(97.45deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  --background-image-tile-icon: linear-gradient(97.28deg, rgb(6 5 55 / 0.23) 25.157%, rgb(37 123 215 / 0.23) 36.242%);
+  --background-image-heading-year: linear-gradient(175deg, #000 56.666%, var(--color-blue) 161.43%);
+  --background-image-phase-label: linear-gradient(132.14deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+
+  --drop-shadow-card: 0 4px 2px rgb(0 0 0 / 0.25);
+  --shadow-tile: 0 4px 4px 0 rgb(0 0 0 / 0.25);
+
+  --background-image-cta-overlay: linear-gradient(to right, rgb(0 64 140 / 0.34), rgb(0 17 38 / 0.34));
+  --background-image-glow-footer: linear-gradient(113.15deg, #000 53.903%, var(--color-blue) 109.94%);
+
+  --shadow-cta-glow: inset 0 0 115px 0 rgb(174 135 240 / 0.1);
+
+  --background-image-glow-about-hero: linear-gradient(198.32deg, #000 23.089%, var(--color-blue) 108.52%);
+  --background-image-future-overlay: linear-gradient(to bottom, rgb(14 165 233 / 0.2), rgb(37 123 215 / 0.2));
+  --background-image-caption-blue: linear-gradient(130.28deg, rgb(6 5 55 / 0.66) 25.157%, rgb(37 123 215 / 0.66) 36.242%);
+  --background-image-caption-blue-strong: linear-gradient(105.44deg, rgb(6 5 55 / 0.77) 25.157%, rgb(37 123 215 / 0.77) 36.242%);
+
+  --background-image-glow-card: linear-gradient(165.38deg, #000 56.666%, var(--color-blue) 161.43%);
+
+  --background-image-spec-pill: linear-gradient(132.63deg, rgb(6 5 55 / 0.64) 25.157%, rgb(37 123 215 / 0.64) 36.242%);
+  --background-image-button-glass: linear-gradient(135.85deg, rgb(6 5 55 / 0.21) 25.157%, rgb(37 123 215 / 0.21) 36.242%);
+  --background-image-feature-card: linear-gradient(102.18deg, rgb(6 5 55 / 0.24) 25.157%, rgb(37 123 215 / 0.24) 36.242%);
+
+  --background-image-stats-strip: linear-gradient(139.7deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  --background-image-detail-number: linear-gradient(176.66deg, #000 56.666%, var(--color-blue) 161.43%);
+  --background-image-detail-title: linear-gradient(136.8deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  /* Data hall feature headings: Figma sets a slightly different angle per heading box */
+  --background-image-feature-title-1: linear-gradient(128.13deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  --background-image-feature-title-2: linear-gradient(144.92deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  --background-image-feature-title-3: linear-gradient(158.97deg, var(--color-navy-dark) 25.157%, var(--color-blue) 36.242%);
+  --background-image-glow-rack: linear-gradient(164.52deg, #000 56.666%, var(--color-blue) 161.43%);
+
+  /* Fluid type scale: each token carries its own line-height and letter-spacing */
+  --text-h1: clamp(2.5rem, 1.5rem + 3.2vw, 4.2625rem);
+  --text-h1--line-height: 0.98;
+  --text-h1--letter-spacing: -0.0195em;
+  --text-h2: clamp(2rem, 1.2rem + 2vw, 3rem);
+  --text-h2--line-height: 0.92;
+  --text-h2--letter-spacing: -0.0208em;
+  --text-display: clamp(2rem, 1.2rem + 2.2vw, 3.5rem);
+  --text-display--line-height: 1.241;
+  --text-display--letter-spacing: -0.0191em;
+  --text-display-tight: clamp(2rem, 1.2rem + 2.2vw, 3.5rem);
+  --text-display-tight--line-height: 1.194;
+  --text-display-tight--letter-spacing: -0.0238em;
+  --text-body-relaxed: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --text-body-relaxed--line-height: 1.889;
+  /* Facility card text scales with the card (it is a size container): 359px design width */
+  --text-facility-title: 8.357cqw;
+  --text-facility-title--line-height: 1.33;
+  --text-facility-sub: 5.571cqw;
+  --text-facility-sub--line-height: 1.4;
+  --text-facility-num: 6.685cqw;
+  --text-facility-num--line-height: 1;
+  /* Feature card text scales with the card (size container): 429px design width */
+  --text-feature-title: 6.993cqw;
+  --text-feature-title--line-height: 1.2;
+  --text-feature-desc: 4.662cqw;
+  --text-feature-desc--line-height: 1.3;
+  /* Capability card text scales with the card (size container): 404px design width */
+  --text-capability-title: 7.426cqw;
+  --text-capability-title--line-height: 1.33;
+  --text-capability-desc: 4.95cqw;
+  --text-capability-desc--line-height: 1.4;
+  /* Roadmap text scales with its phase card (size container, 1455px design width); tiles are their own container (290px) */
+  --text-phase-title: clamp(1.375rem, 2.199cqw, 2rem);
+  --text-phase-title--line-height: 0.8125;
+  --text-phase-sub: clamp(0.9375rem, 1.375cqw, 1.25rem);
+  --text-phase-sub--line-height: 0.984;
+  --text-phase-item: clamp(0.9375rem, 1.649cqw, 1.5rem);
+  --text-phase-item--line-height: 0.8473;
+  --text-phase-head: clamp(1.25rem, 2.199cqw, 2rem);
+  --text-phase-head--line-height: 1;
+  --text-phase-status: clamp(0.9375rem, 1.649cqw, 1.5rem);
+  --text-phase-status--line-height: 0.75;
+  --text-tile-title: clamp(1.0625rem, 8.276cqw, 1.5rem);
+  --text-tile-title--line-height: 0.715;
+  --text-tile-desc: clamp(0.875rem, 6.207cqw, 1.125rem);
+  --text-tile-desc--line-height: 1.222;
+  --text-faq-question: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  --text-faq-question--line-height: 1.8;
+  --text-faq-answer: clamp(0.9375rem, 0.85rem + 0.3vw, 1.125rem);
+  --text-faq-answer--line-height: 1.222;
+  /* Feature items sit in a size container (357px design width) so text scales with them */
+  --text-feature-item-title: clamp(0.875rem, 6.723cqw, 1.5rem);
+  --text-feature-item-title--line-height: 0.715;
+  --text-feature-item-desc: clamp(0.75rem, 5.042cqw, 1.125rem);
+  --text-feature-item-desc--line-height: 1.222;
+  --text-callout-title: clamp(1rem, 0.9rem + 0.35vw, 1.25rem);
+  --text-callout-title--line-height: 0.858;
+  --text-callout-desc: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
+  --text-callout-desc--line-height: 1.375;
+  --text-display-plain: clamp(2rem, 1.2rem + 2.2vw, 3.5rem);
+  --text-display-plain--line-height: 1.15;
+  --text-lead-relaxed: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  --text-lead-relaxed--line-height: 1.55;
+  --text-cta-xl: clamp(1.125rem, 0.9rem + 0.6vw, 1.5rem);
+  --text-cta-xl--line-height: 1;
+  --text-footer: clamp(0.875rem, 1.25vw, 1.5rem);
+  --text-footer--line-height: 1.55;
+  --text-lead-sm: clamp(0.9375rem, 0.85rem + 0.3vw, 1.1188rem);
+  --text-lead-sm--line-height: 1.396;
+  /* About image cards are size containers (607px design width) */
+  --text-about-card-title: clamp(1.375rem, 5.272cqw, 2rem);
+  --text-about-card-title--line-height: 1.15;
+  --text-about-card-desc: clamp(0.9375rem, 2.965cqw, 1.125rem);
+  --text-about-card-desc--line-height: 1.667;
+  --text-col-title: clamp(1.125rem, 0.9rem + 0.6vw, 1.5rem);
+  --text-col-title--line-height: 1.4;
+  --text-col-body: clamp(0.9375rem, 0.85rem + 0.3vw, 1.125rem);
+  --text-col-body--line-height: 1.364;
+  --text-caption-title: clamp(1.0625rem, 0.95rem + 0.4vw, 1.375rem);
+  --text-caption-title--line-height: 1.25;
+  --text-caption-desc: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
+  --text-caption-desc--line-height: 1.5;
+  --text-body-airy: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --text-body-airy--line-height: 1.833;
+  --text-body-loose: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --text-body-loose--line-height: 1.611;
+  /* Division summary cards are size containers (543px design width) */
+  --text-summary-title: clamp(1.25rem, 5.893cqw, 2rem);
+  --text-summary-title--line-height: 1.125;
+  --text-summary-item: clamp(0.875rem, 3.315cqw, 1.125rem);
+  --text-summary-item--line-height: 1.364;
+  --text-facility-sub: clamp(1.125rem, 0.9rem + 0.85vw, 1.725rem);
+  --text-facility-sub--line-height: 1.261;
+  --text-facility-sub--letter-spacing: -0.0195em;
+  --text-spec-title: clamp(1.375rem, 1.1rem + 0.9vw, 1.875rem);
+  --text-spec-title--line-height: 1.2;
+  --text-feature-heading: clamp(1.5rem, 1.2rem + 1vw, 2.125rem);
+  --text-feature-heading--line-height: 1.364;
+  --text-feature-label: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  --text-feature-label--line-height: 1.364;
+  --text-detail-stat: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+  --text-detail-stat--line-height: 1.15;
+  --text-feature-subtitle: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem);
+  --text-feature-subtitle--line-height: 1.26;
+  --text-detail-number: clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+  --text-detail-number--line-height: 1.0625;
+  --text-detail-title: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --text-detail-title--line-height: 1.26;
+  --text-body: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --text-body--line-height: 1.5;
+  --text-badge: 0.75rem;
+  --text-badge--line-height: 1.116;
+  --text-badge--letter-spacing: 0.0809em;
+  --text-eyebrow: clamp(0.875rem, 0.7rem + 0.7vw, 1.25rem);
+  --text-eyebrow--line-height: 1.741;
+  --text-eyebrow--letter-spacing: -0.0269em;
+  --text-lead: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  --text-lead--line-height: 1.25;
+  --text-nav: 0.9375rem;
+  --text-nav--line-height: 0.933;
+  --text-cta: 1rem;
+  --text-cta--line-height: 0.976;
+  --text-cta-sm: 0.944rem;
+  --text-cta-sm--line-height: 1.034;
+  --text-stat: clamp(1.5rem, 1.2rem + 0.8vw, 1.875rem);
+  --text-stat--line-height: 1.15;
+  --text-stat-label: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+  --text-stat-label--line-height: 1.6;
+
+  /* Section insets */
+  --spacing-section-x: clamp(1.5rem, 1rem + 2.5vw, 3.625rem);
+  --spacing-section-top: clamp(3rem, 10.5svh, 7.0625rem);
+  --spacing-section-bottom: clamp(2rem, 8svh, 5.375rem);
+  --spacing-footer-x: clamp(1.5rem, 7.34vw, 8.8125rem);
+  --spacing-footer-y: clamp(3rem, 7.9vw, 9.5rem);
+  --spacing-footer-logo: clamp(9rem, 15.7vw, 18.8125rem);
+  --spacing-footer-gap: clamp(2rem, 13.2vw, 15.875rem);
+  --spacing-section-y: clamp(3rem, 2rem + 3vw, 4.6875rem);
+}
+
+/* 6. @layer components */
+@layer components {
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100svh;
+    padding-block: var(--spacing-section-y);
+  }
+
+  .media-frame {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .media-frame > img,
+  .media-frame > video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* 7. @layer base */
+@layer base {
+  html,
+  body {
+    margin: 0;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-black);
+    color-scheme: light;
+    background: #fff;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    cursor: pointer;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* 8. @keyframes + animation classes (each with a prefers-reduced-motion guard) */
+
+/* Scroll reveal: hooks/useRevealOnScroll adds .reveal-ready to <html> and .is-visible per element.
+   Individual transform properties (translate/scale) are used so they never fight Tailwind's own transforms. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  translate: 0 var(--reveal-distance);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    translate 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, translate;
+}
+
+.reveal-ready [data-reveal='left'] { translate: calc(var(--reveal-distance) * -1) 0; }
+.reveal-ready [data-reveal='right'] { translate: var(--reveal-distance) 0; }
+.reveal-ready [data-reveal='scale'] { translate: 0 calc(var(--reveal-distance) / 2); scale: 0.96; }
+.reveal-ready [data-reveal='fade'] { translate: none; }
+
+.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  will-change: auto;
+}
+
+/* Above-the-fold hero copy rises in on load, one child after another */
+@keyframes hero-rise {
+  from { opacity: 0; translate: 0 var(--reveal-distance); }
+  to { opacity: 1; translate: 0 0; }
+}
+
+.hero-stagger > * { animation: hero-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.hero-stagger > *:nth-child(3) { animation-delay: 0.24s; }
+.hero-stagger > *:nth-child(4) { animation-delay: 0.36s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal],
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+
+  .hero-stagger > * { animation: none; }
+}
+
+/* 9. :root custom properties used by animations */
+:root {
+  --reveal-distance: 2.5rem;
+}
+
+@media (width < 40rem) {
+  :root {
+    --reveal-distance: 1.25rem;
+  }
+}
