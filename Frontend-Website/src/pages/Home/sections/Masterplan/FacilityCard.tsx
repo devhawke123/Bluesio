@@ -38,7 +38,7 @@ export default function FacilityCard({ number, title, subtitle, icon, className 
         <img src={frame.src} alt="" className={`absolute max-w-none ${frame.crop}`} />
       </div>
 
-      <div className="absolute top-[54.77%] left-[7.8%] flex w-[82.5%] flex-col">
+      <div className="absolute bottom-[11%] left-[7.8%] flex w-[86%] flex-col">
         <p className="text-facility-title">{title}</p>
         <p className="text-facility-sub">{subtitle}</p>
       </div>
